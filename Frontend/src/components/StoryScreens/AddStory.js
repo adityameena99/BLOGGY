@@ -1,121 +1,104 @@
-import React, { useRef, useContext } from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
-});
-import { Link } from 'react-router-dom'
+import React, { useRef, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AuthContext } from "../../Context/AuthContext";
-import { AiOutlineUpload } from 'react-icons/ai'
-import { FiArrowLeft } from 'react-icons/fi'
-import '../../Css/AddStory.css'
+import { AiOutlineUpload } from 'react-icons/ai';
+import { FiArrowLeft } from 'react-icons/fi';
+import '../../Css/AddStory.css';
+
+// API instance after all imports
+const API = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com',
+});
 
 const AddStory = () => {
+  const { config } = useContext(AuthContext);
+  const imageEl = useRef(null);
+  const editorEl = useRef(null);
+  const [image, setImage] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
 
-    const { config } = useContext(AuthContext)
-    const imageEl = useRef(null)
-    const editorEl = useRef(null)
-    const [image, setImage] = useState('')
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
-    const [success, setSuccess] = useState('')
-    const [error, setError] = useState('')
+  const clearInputs = () => {
+    setTitle('');
+    setContent('');
+    setImage('');
+    editorEl.current.editor.setData('');
+    imageEl.current.value = "";
+  };
 
-    const clearInputs = () => {
-        setTitle('')
-        setContent('')
-        setImage('')
-        editorEl.current.editor.setData('')
-        imageEl.current.value = ""
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("image", image);
+    formdata.append("content", content);
+
+    try {
+      const { data } = await API.post("/story/addstory", formdata, config);
+      setSuccess('Add story successfully');
+      clearInputs();
+      setTimeout(() => setSuccess(''), 7000);
+    } catch (error) {
+      setError(error.response?.data?.error || "Something went wrong");
+      setTimeout(() => setError(''), 7000);
     }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formdata = new FormData()
-        formdata.append("title", title)
-        formdata.append("image", image)
-        formdata.append("content", content)
+  return (
+    <div className="Inclusive-addStory-page">
+      <Link to="/"><FiArrowLeft /></Link>
+      <form onSubmit={handleSubmit} className="addStory-form">
+        {error && <div className="error_msg">{error}</div>}
+        {success && (
+          <div className="success_msg">
+            <span>{success}</span>
+            <Link to="/">Go home</Link>
+          </div>
+        )}
 
-        try {
-            const { data } = await API.post("/story/addstory", formdata, config)
-            setSuccess('Add story successfully ')
+        <input
+          type="text"
+          required
+          id="title"
+          placeholder="Title"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+        />
 
-            clearInputs()
-            setTimeout(() => {
-                setSuccess('')
-            }, 7000)
+        <CKEditor
+          editor={ClassicEditor}
+          onChange={(e, editor) => setContent(editor.getData())}
+          ref={editorEl}
+        />
 
-        }
-        catch (error) {
-            setTimeout(() => {
-                setError('')
-
-            }, 7000)
-            setError(error.response.data.error)
-
-        }
-
-    }
-    return (
-
-        <div className="Inclusive-addStory-page ">
-            <Link to={'/'} >
-                <FiArrowLeft />
-            </Link>
-            <form onSubmit={handleSubmit} className="addStory-form">
-
-                {error && <div className="error_msg">{error}</div>}
-                {success && <div className="success_msg">
-                    <span>
-                        {success}
-                    </span>
-                    <Link to="/">Go home</Link>
-                </div>}
-
-                <input
-                    type="text"
-                    required
-                    id="title"
-                    placeholder="Title"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                />
-
-                <CKEditor
-                    editor={ClassicEditor}
-                    onChange={(e, editor) => {
-                        const data = editor.getData();
-                        setContent(data)
-                    }}
-                    ref={editorEl}
-                />
-                <div class="StoryImageField">
-                    <AiOutlineUpload />
-                    <div class="txt">
-                        {image ? image.name :
-                            " Include a high-quality image in your story to make it more inviting to readers."
-                        }
-                    </div>
-                    <input
-                        name="image"
-                        type="file"
-                        ref={imageEl}
-                        onChange={(e) => {
-                            setImage(e.target.files[0])
-                        }}
-                    />
-                </div>
-                <button type='submit' disabled={image ? false : true} className={image ? 'addStory-btn' : 'dis-btn'}
-                >Publish </button>
-            </form>
-
+        <div className="StoryImageField">
+          <AiOutlineUpload />
+          <div className="txt">
+            {image ? image.name : "Include a high-quality image in your story to make it more inviting to readers."}
+          </div>
+          <input
+            name="image"
+            type="file"
+            ref={imageEl}
+            onChange={(e) => setImage(e.target.files[0])}
+          />
         </div>
 
-    )
-}
+        <button
+          type="submit"
+          disabled={!image}
+          className={image ? 'addStory-btn' : 'dis-btn'}
+        >
+          Publish
+        </button>
+      </form>
+    </div>
+  );
+};
 
-export default AddStory
-
-
+export default AddStory;
