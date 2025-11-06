@@ -1,0 +1,301 @@
+/* Modern Home Styles - Awwwards Inspired */
+
+.Inclusive-home-page {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.Inclusive-home-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.bg-planet-svg {
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    z-index: 2;
+    width: 300px;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+}
+
+.bg-planet2-svg {
+    position: absolute;
+    bottom: 10%;
+    left: -10%;
+    z-index: 2;
+    width: 250px;
+    opacity: 0.5;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+.bg-planet3-svg {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 2;
+    width: 200px;
+    opacity: 0.4;
+    animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.story-card-wrapper {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+}
+
+.story-card {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.6s ease-out;
+}
+
+.story-card:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.story-card:nth-child(3n) {
+    animation-delay: 0.2s;
+}
+
+.story-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 20px 40px 0 rgba(31, 38, 135, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.story-card a.story-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    color: inherit;
+}
+
+.story-card img.story-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: all var(--transition-normal);
+    filter: brightness(0.9);
+}
+
+.story-card:hover img.story-image {
+    transform: scale(1.05);
+    filter: brightness(1);
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1200px) {
+    .story-card-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .story-card-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .story-card {
+        max-width: 100%;
+    }
+    
+    .bg-planet3-svg,
+    .bg-planet-svg,
+    .bg-planet2-svg {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .Inclusive-home-page {
+        padding-top: 80px;
+    }
+    
+    .story-card-wrapper {
+        padding: 0 0.5rem;
+    }
+}
+
+.story-card .story-content-wrapper {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.story-card h5.story-title {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    font-family: var(--font-display);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.story-card .story-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.story-card .story-text * {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.story-card .story-createdAt {
+    font-family: var(--font-primary);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Skeleton Loading Styles */
+.skeleton_emp {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Pagination Styles */
+.pagination-wrapper {
+    position: relative;
+    z-index: 3;
+    margin: 3rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* No Stories Component */
+.no-story {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    grid-column: 1 / -1;
+}
+
+.no-story-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    padding: 3rem 2rem;
+    max-width: 500px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.no-story-icon {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.no-story-content h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.no-story-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design for No Stories */
+@media (max-width: 768px) {
+    .no-story-content {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .no-story-icon {
+        font-size: 3rem;
+    }
+    
+    .no-story-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .no-story-content p {
+        font-size: 0.9rem;
+    }
+}
