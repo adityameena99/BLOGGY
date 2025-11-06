@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../../Css/ForgotPassword.css"
-import { BsArrowBarLeft } from 'react-icons/bs'
+import "../../Css/ForgotPassword.css";
+import { BsArrowBarLeft } from "react-icons/bs";
 
+// API instance
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
+  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-e52g.onrender.com",
 });
 
 const ForgotPasswordScreen = () => {
@@ -19,7 +20,7 @@ const ForgotPasswordScreen = () => {
       const { data } = await API.post("/auth/forgotpassword", { email });
       setSuccess(data.message);
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error.response?.data?.error || "Something went wrong");
       setEmail("");
       setTimeout(() => setError(""), 5000);
     }
@@ -34,11 +35,18 @@ const ForgotPasswordScreen = () => {
         <form onSubmit={forgotPasswordHandler}>
           <div className="top-forgotpassword-explain">
             <h3>Forgot Password</h3>
-            <p>Please enter the email address you registered your account with. We will send you reset password confirmation to this email</p>
+            <p>
+              Please enter the email address you registered your account with.
+              We will send you a reset password confirmation to this email.
+            </p>
           </div>
 
           {error && <div className="error_message">{error}</div>}
-          {success && <div className="success_message">{success} - <Link to="/">Go home</Link></div>}
+          {success && (
+            <div className="success_message">
+              {success} - <Link to="/">Go home</Link>
+            </div>
+          )}
 
           <div className="input-wrapper">
             <input
