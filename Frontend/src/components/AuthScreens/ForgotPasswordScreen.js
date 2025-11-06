@@ -1,8 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
-});
+
 import { Link } from "react-router-dom";
 import "../../Css/ForgotPassword.css"
 import { BsArrowBarLeft } from 'react-icons/bs'
@@ -10,6 +8,11 @@ const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+
+  const API = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
+});
 
   const forgotPasswordHandler = async (e) => {
     e.preventDefault();
