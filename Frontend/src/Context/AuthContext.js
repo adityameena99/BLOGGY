@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-rie5.onrender.com
-'
+' withCredentials: true
 });
 
 export const AuthContext = React.createContext();
