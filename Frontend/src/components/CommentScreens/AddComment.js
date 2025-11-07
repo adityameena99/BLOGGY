@@ -6,9 +6,14 @@ import { BsShieldCheck, BsCheckAll } from 'react-icons/bs'
 import { IoAdd } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
 import '../../Css/AddComment.css'
+
+// API instance
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
+  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-rie5.onrender.com",
+  withCredentials: true
 });
+
+
 const AddComment = ({ setSidebarShowStatus, slug, getStoryComments, activeUser, count }) => {
 
     const navigate = useNavigate();
