@@ -8,9 +8,12 @@ import { BsThreeDots } from 'react-icons/bs'
 import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
+// API instance
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
+  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-rie5.onrender.com",
+  withCredentials: true
 });
+
 const CommentItem = ({ comment, activeUser }) => {
     const navigate = useNavigate()
     const [likeCount, setLikeCount] = useState(comment.likeCount)
