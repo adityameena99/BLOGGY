@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 
 // API instance
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-e52g.onrender.com",
+  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-rie5.onrender.com",
+  withCredentials: true
 });
+
 
 const ChangePassword = () => {
   const [isRevealPass1, setIsRevealPass1] = useState(false);
