@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import StoryComments from './StoryComments';
 import axios from 'axios';
+
+import AddComment from './AddComment';
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
 });
-import AddComment from './AddComment';
 
 const CommentSidebar = ({ slug, sidebarShowStatus, setSidebarShowStatus, activeUser }) => {
 
