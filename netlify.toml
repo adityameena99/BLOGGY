@@ -3,8 +3,10 @@
   command = "npm install && npm run build"
   publish = "Frontend/build"
 
+  
 [build.environment]
-  NODE_OPTIONS = "--max_old_space_size=4096"  # gives Node 4GB memory
+  NODE_OPTIONS = "--max-old-space-size=8192"
+
 
 [[redirects]]
   from = "/*"
