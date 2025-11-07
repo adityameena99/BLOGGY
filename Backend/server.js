@@ -23,8 +23,9 @@ app.use(express.json())
 const allowedOrigins = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://bloggy-tuwi.vercel.app',   // ✅ Your actual Vercel frontend
+    'https://bloggy-z93j.vercel.app',  // ✅ Correct Vercel Frontend URL
 ];
+
 
 
 app.use(cors({
