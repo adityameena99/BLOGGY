@@ -6,11 +6,11 @@ import {
 } from 'react-icons/md'
 import { BsThreeDots } from 'react-icons/bs'
 import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
 });
-import { useNavigate } from 'react-router-dom';
-
 const CommentItem = ({ comment, activeUser }) => {
     const navigate = useNavigate()
     const [likeCount, setLikeCount] = useState(comment.likeCount)
