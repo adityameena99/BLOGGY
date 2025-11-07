@@ -10,10 +10,12 @@ import { FaRegComment } from 'react-icons/fa';
 import { BsBookmarkPlus, BsThreeDots, BsBookmarkFill } from 'react-icons/bs';
 import CommentSidebar from '../CommentScreens/CommentSidebar';
 
-// ✅ API instance after all imports
+// API instance
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
+  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-rie5.onrender.com",
+  withCredentials: true
 });
+
 
 const DetailStory = () => {
   const [likeStatus, setLikeStatus] = useState(false);
