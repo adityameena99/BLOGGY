@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react'
 import axios from 'axios';
-const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
-});
+
 import StarRating from './StarRating';
 import { BsShieldCheck, BsCheckAll } from 'react-icons/bs'
 import { IoAdd } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
 import '../../Css/AddComment.css'
-
+const API = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'
+});
 const AddComment = ({ setSidebarShowStatus, slug, getStoryComments, activeUser, count }) => {
 
     const navigate = useNavigate();
