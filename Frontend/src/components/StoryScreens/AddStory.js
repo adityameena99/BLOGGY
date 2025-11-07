@@ -8,10 +8,12 @@ import { AiOutlineUpload } from 'react-icons/ai';
 import { FiArrowLeft } from 'react-icons/fi';
 import '../../Css/AddStory.css';
 
-// API instance after all imports
+// API instance
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com',
+  baseURL: process.env.REACT_APP_API_URL || "https://bloggy-rie5.onrender.com",
+  withCredentials: true
 });
+
 
 const AddStory = () => {
   const { config } = useContext(AuthContext);
