@@ -23,7 +23,7 @@ app.use(express.json())
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://bloggy-lac.vercel.app" // ✅ FULL URL WITH HTTPS
+  "https://bloggy-rouge.vercel.app" // ✅ FULL URL WITH HTTPS
 ];
 
 
