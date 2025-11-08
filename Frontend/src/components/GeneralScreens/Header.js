@@ -65,7 +65,7 @@ const Header = () => {
 
                                     :
 
-                                    <img src={`${process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'}/userPhotos/${activeUser.photo}`} alt={activeUser.username} />
+                                    <img src={`${process.env.REACT_APP_API_URL || 'https://bloggy-rie5.onrender.com'}/userPhotos/${activeUser.photo}`} alt={activeUser.username} />
 
                                 }
 
