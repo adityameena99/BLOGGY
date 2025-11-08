@@ -92,7 +92,7 @@ const EditStory = () => {
         <div className="currentlyImage">
           <div className="absolute">Currently Image</div>
           <img
-            src={`${process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'}/storyImages/${previousImage}`}
+            src={`${process.env.REACT_APP_API_URL || 'https://bloggy-rie5.onrender.com'}/storyImages/${previousImage}`}
             alt="storyImage"
           />
         </div>
