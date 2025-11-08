@@ -72,7 +72,7 @@ const ReadListStoryItem = ({ story, editDate }) => {
 
             <section>
                 <div className="story-Image-Wrap">
-                    <img src={`${process.env.REACT_APP_API_URL || 'https://bloggy-e52g.onrender.com'}/storyImages/${story.image}`} alt={story.title} width="180px" />
+                    <img src={`${process.env.REACT_APP_API_URL || 'https://bloggy-rie5.onrender.com'}/storyImages/${story.image}`} alt={story.title} width="180px" />
                 </div>
 
             </section>
