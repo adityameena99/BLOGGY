@@ -104,7 +104,7 @@ const EditProfile = () => {
           <div className="currentImage">
             <div className="absolute">Currently Image</div>
             <img
-              src={`${process.env.REACT_APP_API_URL || "https://bloggy-e52g.onrender.com"}/userPhotos/${previousPhoto}`}
+              src={`${process.env.REACT_APP_API_URL || "https://bloggy-rie5.onrender.com"}/userPhotos/${previousPhoto}`}
               alt="userPhoto"
             />
           </div>
