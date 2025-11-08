@@ -21,19 +21,20 @@ const app = express() ;
 app.use(express.json())
 
 const allowedOrigins = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'bloggy-lac.vercel.app',  // ✅ Correct Vercel Frontend URL
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "https://bloggy-lac.vercel.app" // ✅ FULL URL WITH HTTPS
 ];
 
 
-
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options("*", cors()); // ✅ Handle preflight
 
 
 app.use("/",IndexRoute)
